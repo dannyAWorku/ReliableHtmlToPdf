@@ -12,18 +12,17 @@
 
     <!-- Description & discovery -->
     <Description>
-      A lightweight, production-ready HTML to PDF converter for .NET.
-      Supports embedded fonts, headers, footers, and large documents.
-      Internally powered by Chromium via Microsoft Playwright.
+      ReliableHtmlToPdf is a production-ready HTML to PDF converter for .NET
+      built on Microsoft Playwright. Supports headers, footers, embedded fonts,
+      and large documents with high reliability.
     </Description>
 
-    <PackageTags>
-      html pdf converter chromium playwright document generation
-    </PackageTags>
+    
+    <PackageTags>html pdf playwright chromium converter reliable</PackageTags>
 
     <!-- Project links -->
-    <RepositoryUrl>https://github.com/YOUR_USERNAME/ReliableHtmlToPdf</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/YOUR_USERNAME/ReliableHtmlToPdf</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dannyAWorku/ReliableHtmlToPdf</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/dannyAWorku/ReliableHtmlToPdf</PackageProjectUrl>
 
     <!-- Licensing -->
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
