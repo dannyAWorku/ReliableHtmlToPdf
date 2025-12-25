@@ -57,34 +57,45 @@ public sealed class PlaywrightHtmlToPdfConverter : IHtmlToPdfConverter , IAsyncD
     {
         if (string.IsNullOrWhiteSpace(html))
             throw new ArgumentException("HTML cannot be empty.");
-        
+
+        if (html.Length > 5_000_000)
+            throw new InvalidOperationException("HTML too large.");
+
         html = InjectFonts(html, options);
 
-        var page = await _browser.NewPageAsync();
+        IPage page = null;
 
-        await page.SetContentAsync(html);
-
-        var pdf = await page.PdfAsync(new PagePdfOptions
+        try
         {
+            page = await _browser.NewPageAsync();
+            page.SetDefaultTimeout(options.TimeoutMs);
 
-            Format = options.Format,
-            Landscape = options.Landscape,
-            PrintBackground = options.PrintBackground,
-            Margin = new Margin
+            await page.SetContentAsync(html);
+
+            return await page.PdfAsync(new PagePdfOptions
             {
-                Top = $"{options.MarginTop}px",
-                Bottom = $"{options.MarginBottom}px",
-                Left = $"{options.MarginLeft}px",
-                Right = $"{options.MarginRight}px"
-            },
-            DisplayHeaderFooter = !string.IsNullOrEmpty(options.HeaderHtml) || !string.IsNullOrEmpty(options.FooterHtml),
-            HeaderTemplate = options.HeaderHtml,
-            FooterTemplate = options.FooterHtml
-        });
-
-        await page.CloseAsync();
-        return pdf;
+                Format = options.Format,
+                PrintBackground = options.PrintBackground,
+                Margin = new Margin
+                {
+                    Top = $"{options.MarginTop}px",
+                    Bottom = $"{options.MarginBottom}px",
+                    Left = $"{options.MarginLeft}px",
+                    Right = $"{options.MarginRight}px"
+                },
+                DisplayHeaderFooter = !string.IsNullOrEmpty(options.HeaderHtml)
+                                   || !string.IsNullOrEmpty(options.FooterHtml),
+                HeaderTemplate = options.HeaderHtml,
+                FooterTemplate = options.FooterHtml
+            });
+        }
+        finally
+        {
+            if (page != null)
+                await page.CloseAsync();
+        }
     }
+
 
     private static string InjectFonts(string html, PdfOptions options)
     {

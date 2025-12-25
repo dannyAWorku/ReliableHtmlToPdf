@@ -213,29 +213,530 @@ var html4 = """
 </html>
 """;
 
-//var pdf = await converter.ConvertAsync(html, new PdfOptions
-//{
-//    MarginTop = 50,
-//    MarginBottom = 50,
-//    HeaderHtml = "<div style='font-size:12px; text-align:center;'>Header Text</div>",
-//    FooterHtml = "<div style='font-size:12px; text-align:center;'>Page <span class='pageNumber'></span></div>"
-//});
+var html6 = """
+     <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
 
-//var pdf2 = await converter.ConvertAsync(html2, new PdfOptions
-//{
-//    MarginTop = 50,
-//    MarginBottom = 50,
-//    HeaderHtml = "<div style='font-size:12px; text-align:center;'>Header Text</div>",
-//    FooterHtml = "<div style='font-size:12px; text-align:center;'>Page <span class='pageNumber'></span></div>"
-//});
+    <style>
+    body {
+        font-family: Inter;
+        font-size: 12px;
+        color: #111;
+    }
 
-//var pdf3 = await converter.ConvertAsync(html3, new PdfOptions
-//{
-//    MarginTop = 50,
-//    MarginBottom = 50,
-//    HeaderHtml = "<div style='font-size:12px; text-align:center;'>Header Text</div>",
-//    FooterHtml = "<div style='font-size:12px; text-align:center;'>Page <span class='pageNumber'></span></div>"
-//});
+    h1, h2, h3 {
+        margin: 0;
+    }
+
+    .header {
+        margin-bottom: 20px;
+    }
+
+    .company {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .meta {
+        margin-top: 10px;
+        font-size: 11px;
+    }
+
+    .section {
+        margin-top: 25px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    th {
+        background: #f2f2f2;
+        font-weight: 700;
+    }
+
+    th, td {
+        padding: 6px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .amount {
+        text-align: right;
+    }
+
+    .page-break {
+        page-break-before: always;
+    }
+
+    .no-break {
+        page-break-inside: avoid;
+    }
+
+    .summary {
+        margin-top: 20px;
+        text-align: right;
+    }
+
+    .summary table {
+        width: 300px;
+        float: right;
+    }
+
+    .summary td {
+        border: none;
+        padding: 4px;
+    }
+
+    .footer-note {
+        font-size: 10px;
+        color: #666;
+        margin-top: 40px;
+    }
+    </style>
+    </head>
+
+    <body>
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="header">
+        <div class="company">ACME Trading PLC</div>
+        <div class="meta">
+            <strong>Receipt No:</strong> RCPT-2025-00091<br/>
+            <strong>Date:</strong> 2025-09-25<br/>
+            <strong>Customer:</strong> Daniel Alemu<br/>
+            <strong>Payment Method:</strong> Credit Card
+        </div>
+    </div>
+
+    <!-- ================= ITEMS ================= -->
+
+    <div class="section">
+    <h2>Purchased Items</h2>
+
+    <table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Description</th>
+        <th>Qty</th>
+        <th class="amount">Unit Price</th>
+        <th class="amount">Total</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <!-- Repeat rows to force multiple pages -->
+    <tr>
+        <td>1</td>
+        <td>Enterprise Software License (Annual)</td>
+        <td>1</td>
+        <td class="amount">$1,200.00</td>
+        <td class="amount">$1,200.00</td>
+    </tr>
+
+    <!-- COPY THIS ROW 30–40 TIMES to test pagination -->
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Premium Support Package – includes <em>24/7 support</em> and <strong>priority fixes</strong></td>
+        <td>1</td>
+        <td class="amount">$300.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Custom Integration Service</td>
+        <td>2</td>
+        <td class="amount">$150.00</td>
+        <td class="amount">$300.00</td>
+    </tr>
+
+    <!-- duplicate block until it spans multiple pages -->
+
+    </tbody>
+    </table>
+    </div>
+
+    <!-- ================= PAGE BREAK ================= -->
+
+    <div class="page-break"></div>
+
+    <!-- ================= SUMMARY ================= -->
+
+    <div class="section no-break">
+    <h2>Payment Summary</h2>
+
+    <div class="summary">
+    <table>
+    <tr>
+        <td>Subtotal:</td>
+        <td class="amount">$1,800.00</td>
+    </tr>
+    <tr>
+        <td>Tax (15%):</td>
+        <td class="amount">$270.00</td>
+    </tr>
+    <tr>
+        <td><strong>Total:</strong></td>
+        <td class="amount"><strong>$2,070.00</strong></td>
+    </tr>
+    </table>
+    </div>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <!-- ================= TERMS ================= -->
+
+    <div class="section">
+    <h3>Terms & Notes</h3>
+    <p>
+    Thank you for your business. This receipt confirms payment in full.
+    Please retain it for your records.
+    </p>
+
+    <p class="footer-note">
+    This document was generated electronically and is valid without a signature.
+    </p>
+    </div>
+
+    </body>
+    </html>
+    
+    """;
+
+var pdf = await converter.ConvertAsync(html, new PdfOptions
+{
+    MarginTop = 50,
+    MarginBottom = 50,
+    HeaderHtml = "<div style='font-size:12px; text-align:center;'>Header Text</div>",
+    FooterHtml = "<div style='font-size:12px; text-align:center;'>Page <span class='pageNumber'></span></div>"
+});
+
+var pdf2 = await converter.ConvertAsync(html2, new PdfOptions
+{
+    MarginTop = 50,
+    MarginBottom = 50,
+    HeaderHtml = "<div style='font-size:12px; text-align:center;'>Header Text</div>",
+    FooterHtml = "<div style='font-size:12px; text-align:center;'>Page <span class='pageNumber'></span></div>"
+});
+
+var pdf3 = await converter.ConvertAsync(html3, new PdfOptions
+{
+    MarginTop = 50,
+    MarginBottom = 50,
+    HeaderHtml = "<div style='font-size:12px; text-align:center;'>Header Text</div>",
+    FooterHtml = "<div style='font-size:12px; text-align:center;'>Page <span class='pageNumber'></span></div>"
+});
 var bytes = File.ReadAllBytes("C:\\Users\\Daniel\\source\\repos\\HtmlToPdf\\HtmlToPdf.Core\\Assets\\Fonts\\Inter_18pt-Regular.ttf");
 var base64 = Convert.ToBase64String(bytes);
 var options = new PdfOptions
@@ -245,7 +746,39 @@ var options = new PdfOptions
 options.EmbeddedFonts.Add("Inter", base64);
 var pdf4 = await converter.ConvertAsync(html4, options);
 
-//File.WriteAllBytes("C:\\Users\\Daniel\\Desktop\\test1.pdf", pdf);
-//File.WriteAllBytes("C:\\Users\\Daniel\\Desktop\\test2.pdf", pdf2);
-//File.WriteAllBytes("C:\\Users\\Daniel\\Desktop\\test3.pdf", pdf3);
+File.WriteAllBytes("C:\\Users\\Daniel\\Desktop\\test1.pdf", pdf);
+File.WriteAllBytes("C:\\Users\\Daniel\\Desktop\\test2.pdf", pdf2);
+File.WriteAllBytes("C:\\Users\\Daniel\\Desktop\\test3.pdf", pdf3);
 File.WriteAllBytes("C:\\Users\\Daniel\\Desktop\\test4.pdf", pdf4);
+
+var model = new InvoiceModel(
+    "INV-001",
+    DateTime.Today,
+    "ACME Corp",
+    new[]
+    {
+        new InvoiceLine("Service A", 2, 100),
+        new InvoiceLine("Service B", 1, 250)
+    },
+    450
+);
+
+var template = new InvoiceTemplate();
+var html5 = template.Render(model);
+
+var options2 = new PdfOptions
+{
+    PrintBackground = true,
+    HeaderHtml = "<div style='font-size:10px;text-align:center;'>Invoice</div>",
+    FooterHtml = "<div style='font-size:10px;text-align:right;'>Page {{pageNumber}} of {{totalPages}}</div>"
+};
+
+var pdf5 = await converter.ConvertAsync(html5, options2);
+File.WriteAllBytes("C:\\Users\\Daniel\\Desktop\\test5.pdf", pdf5);
+
+var options3 = new PdfOptions
+{
+    PrintBackground = true
+};
+var pdf6 = await converter.ConvertAsync(html6, options3);
+File.WriteAllBytes("C:\\Users\\Daniel\\Desktop\\test6.pdf", pdf6);

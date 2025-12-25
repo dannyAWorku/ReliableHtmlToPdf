@@ -18,5 +18,8 @@ public sealed class PdfOptions
 
     // New: Custom Fonts (base64 embedded)
     public Dictionary<string, string> EmbeddedFonts { get; init; } = new();
+
+    public int TimeoutMs { get; init; } = 30_000;
+    // New: Timeout in milliseconds
 }
 
