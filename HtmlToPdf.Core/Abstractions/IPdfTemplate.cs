@@ -1,4 +1,4 @@
-﻿namespace HtmlToPdf.Core.Abstractions;
+﻿namespace ReliableHtmlToPdf.Abstractions;
 
 public interface IPdfTemplate<TModel>
 {

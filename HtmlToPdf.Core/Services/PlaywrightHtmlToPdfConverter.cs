@@ -1,9 +1,11 @@
-﻿using HtmlToPdf.Core.Abstractions;
-using HtmlToPdf.Core.Models;
+﻿
 using Microsoft.Playwright;
+using ReliableHtmlToPdf.Abstractions;
+using ReliableHtmlToPdf.Models;
 using System.Text;
 
-public sealed class PlaywrightHtmlToPdfConverter : IHtmlToPdfConverter , IAsyncDisposable
+namespace ReliableHtmlToPdf.Services;
+internal sealed class PlaywrightHtmlToPdfConverter : IHtmlToPdfConverter , IAsyncDisposable
 {
     private readonly IBrowser _browser;
     private readonly IPlaywright _playwright;
@@ -97,7 +99,7 @@ public sealed class PlaywrightHtmlToPdfConverter : IHtmlToPdfConverter , IAsyncD
     }
 
 
-    private static string InjectFonts(string html, PdfOptions options)
+    internal static string InjectFonts(string html, PdfOptions options)
     {
         if (options.EmbeddedFonts.Count == 0)
             return html;

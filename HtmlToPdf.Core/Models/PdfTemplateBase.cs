@@ -1,6 +1,6 @@
-﻿using HtmlToPdf.Core.Abstractions;
+﻿using ReliableHtmlToPdf.Abstractions;
 
-namespace HtmlToPdf.Core.Models;
+namespace ReliableHtmlToPdf.Models;
 
 public abstract class PdfTemplateBase<TModel> : IPdfTemplate<TModel>
 {

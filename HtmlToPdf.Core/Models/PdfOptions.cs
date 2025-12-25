@@ -1,4 +1,4 @@
-﻿namespace HtmlToPdf.Core.Models;
+﻿namespace ReliableHtmlToPdf.Models;
 
 public sealed class PdfOptions
 {
