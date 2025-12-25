@@ -1,6 +1,6 @@
 ﻿using ReliableHtmlToPdf.Models;
 
-namespace ReliableHtmlToPdf.Abstractions;
+namespace ReliableHtmlToPdf;
 
 /// <summary>
 /// Converts HTML content into a PDF document.
@@ -8,11 +8,16 @@ namespace ReliableHtmlToPdf.Abstractions;
 public interface IHtmlToPdfConverter : IAsyncDisposable
 {
     /// <summary>
-    /// Converts the given HTML into a PDF byte array.
+    /// Asynchronously converts the specified HTML content to a PDF document.
     /// </summary>
-    /// <param name="html">Complete HTML document including head and body.</param>
-    /// <param name="options">PDF rendering options.</param>
-    /// <returns>PDF as byte array.</returns>
-    Task<byte[]> ConvertAsync(string html, PdfOptions options);
+    /// <param name="html">The HTML markup to convert to PDF. Cannot be null or empty.</param>
+    /// <param name="options">Optional settings that control PDF generation, such as page size, margins, or headers. If null, default options
+    /// are used.</param>
+    /// <param name="cancellationToken">A cancellation token that can be used to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains a byte array with the generated PDF
+    /// document.</returns>
+    Task<byte[]> ConvertAsync(string html, 
+        PdfOptions? options=null,
+        CancellationToken cancellationToken=default);
 }
 

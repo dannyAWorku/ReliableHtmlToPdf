@@ -1,7 +1,6 @@
-﻿using ReliableHtmlToPdf.Abstractions;
-using ReliableHtmlToPdf.Services;
+﻿using ReliableHtmlToPdf.Services;
 
-namespace HtmlToPdf.Core.Services;
+namespace ReliableHtmlToPdf;
 
 public static class HtmlToPdfConverter
 {

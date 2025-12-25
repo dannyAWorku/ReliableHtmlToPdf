@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.Playwright;
-using ReliableHtmlToPdf.Abstractions;
 using ReliableHtmlToPdf.Models;
 using System.Text;
 
@@ -55,13 +54,17 @@ internal sealed class PlaywrightHtmlToPdfConverter : IHtmlToPdfConverter , IAsyn
     //    return new PlaywrightHtmlToPdfConverter(playwright, browser);
     //}
 
-    public async Task<byte[]> ConvertAsync(string html, PdfOptions options)
+    public async Task<byte[]> ConvertAsync(string html,
+        PdfOptions? options =null,
+        CancellationToken cancellationToken=default)
     {
         if (string.IsNullOrWhiteSpace(html))
             throw new ArgumentException("HTML cannot be empty.");
 
         if (html.Length > 5_000_000)
             throw new InvalidOperationException("HTML too large.");
+        
+        options ??= new PdfOptions();
 
         html = InjectFonts(html, options);
 
