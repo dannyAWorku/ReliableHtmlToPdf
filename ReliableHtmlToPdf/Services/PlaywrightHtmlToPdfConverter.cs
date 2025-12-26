@@ -40,19 +40,6 @@ internal sealed class PlaywrightHtmlToPdfConverter : IHtmlToPdfConverter , IAsyn
             throw;
         }
     }
-    //public static async Task<IHtmlToPdfConverter> CreateAsync()
-    //{
-    //    // This command tells Playwright to download the browsers via C# code
-    //    // It will take a minute to run the first time.
-    //    var exitCode = Microsoft.Playwright.Program.Main(new[] { "install", "chromium" });
-
-    //    if (exitCode != 0) throw new Exception("Browser install failed");
-
-    //    var playwright = await Playwright.CreateAsync();
-    //    var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
-
-    //    return new PlaywrightHtmlToPdfConverter(playwright, browser);
-    //}
 
     public async Task<byte[]> ConvertAsync(string html,
         PdfOptions? options =null,

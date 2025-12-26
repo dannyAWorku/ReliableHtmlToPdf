@@ -35,10 +35,10 @@ dotnet add package ReliableHtmlToPdf
 ## 🚀 Basic Usage
 
 ```csharp
-using HtmlToPdf.Core.Models;
-using HtmlToPdf.Core.Abstractions;
+using ReliableHtmlToPdf.Models;
+using ReliableHtmlToPdf;
 
-await using var converter = await PlaywrightHtmlToPdfConverter.CreateAsync();
+await using var converter = await HtmlToPdfConverter.CreateAsync();
 
 var html = """
 <!DOCTYPE html>
